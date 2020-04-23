@@ -1,0 +1,17 @@
+MDB PASS: Smudgefudge1.
+MDB TOKEN: vFSAEHY-zczb9u3qAFfd
+npm install git+https://oauth2:vFSAEHY-zczb9u3qAFfd@git.mdbootstrap.com/mdb/react/re-pro.git --save
+
+LOGO: 
+https://i.ibb.co/xf577Vg/blue-logo-funnelpal-white-text.png
+https://i.ibb.co/3cpxC8F/funnelpal-logo.png
+https://i.ibb.co/nBBHfqX/funnelpal-logo-white-text.png
+
+
+
+Make a dashboard:
+	funnel list
+	most visited funnels
+	other analytic data
+
+this.props.deleteFunnel.bind(this, funnel.id)

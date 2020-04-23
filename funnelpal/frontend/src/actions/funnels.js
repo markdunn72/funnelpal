@@ -1,0 +1,61 @@
+import axios from "axios";
+import { createMessage, returnErrors } from "./messages";
+import { tokenConfig } from "./auth";
+
+import { GET_FUNNELS, GET_FUNNEL, DELETE_FUNNEL, CREATE_FUNNEL } from "./types";
+
+export const getFunnels = () => (dispatch, getState) => {
+  axios
+    .get("/api/funnels/", tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: GET_FUNNELS,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const getFunnel = () => (dispatch, getState) => {
+  axios
+    .get(`/api/funnels/${id}`, tokenConfig(getState))
+    .then((res) => {
+      dispatch({
+        type: GET_FUNNEL,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const deleteFunnel = (id) => (dispatch, getState) => {
+  axios
+    .delete(`/api/funnels/${id}/`, tokenConfig(getState))
+    .then((res) => {
+      dispatch(createMessage({ deleteFunnel: "Funnel Deleted" }));
+      dispatch({
+        type: DELETE_FUNNEL,
+        payload: id,
+      });
+    })
+    .catch((err) => console.log(err));
+};
+
+export const createFunnel = (funnel) => (dispatch, getState) => {
+  axios
+    .post("/api/funnels/", funnel, tokenConfig(getState))
+    .then((res) => {
+      dispatch(createMessage({ createFunnel: "Funnel Created" }));
+      dispatch({
+        type: CREATE_FUNNEL,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
