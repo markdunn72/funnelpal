@@ -7,6 +7,7 @@ import {
 
 const initialState = {
   funnels: [],
+  funnel: {},
 };
 
 export default function (state = initialState, action) {

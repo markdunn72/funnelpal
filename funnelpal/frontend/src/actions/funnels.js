@@ -18,7 +18,7 @@ export const getFunnels = () => (dispatch, getState) => {
     );
 };
 
-export const getFunnel = () => (dispatch, getState) => {
+export const getFunnel = (id) => (dispatch, getState) => {
   axios
     .get(`/api/funnels/${id}`, tokenConfig(getState))
     .then((res) => {
@@ -48,6 +48,21 @@ export const deleteFunnel = (id) => (dispatch, getState) => {
 export const createFunnel = (funnel) => (dispatch, getState) => {
   axios
     .post("/api/funnels/", funnel, tokenConfig(getState))
+    .then((res) => {
+      dispatch(createMessage({ createFunnel: "Funnel Created" }));
+      dispatch({
+        type: CREATE_FUNNEL,
+        payload: res.data,
+      });
+    })
+    .catch((err) =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
+};
+
+export const updateFunnel = (funnel, id) => (dispatch, getState) => {
+  axios
+    .post(`/api/funnels/${id}/`, funnel, tokenConfig(getState))
     .then((res) => {
       dispatch(createMessage({ createFunnel: "Funnel Created" }));
       dispatch({

@@ -139,7 +139,7 @@ export class Form extends Component {
     const funnel = {
       name,
       optinpage: { h1: optin_h1, h2: optin_h2, p: optin_p, btn: optin_btn },
-      landingpage: { h1: landing_h1, landing_h2, landing_p },
+      landingpage: { h1: landing_h1, h2: landing_h2, p: landing_p },
     };
     this.props.createFunnel(funnel);
     this.props.history.push("/");

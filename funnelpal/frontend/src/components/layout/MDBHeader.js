@@ -1,11 +1,10 @@
 import React, { Component, Fragment } from "react";
-import { Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../../actions/auth";
 
 import {
-  MDBContainer,
   MDBNavbar,
   MDBSideNav,
   MDBSideNavNav,
@@ -15,17 +14,7 @@ import {
   MDBNavbarNav,
   MDBNavItem,
   MDBNavLink,
-  MDBNavbarToggler,
-  MDBCollapse,
-  MDBFormInline,
-  MDBDropdown,
-  MDBDropdownToggle,
-  MDBDropdownMenu,
-  MDBDropdownItem,
-  MDBBtn,
   MDBIcon,
-  MDBInput,
-  MDBLink,
 } from "mdbreact";
 
 class Header extends Component {
@@ -69,6 +58,10 @@ class Header extends Component {
 
   toggleCollapse = () => {
     this.setState({ isOpen: !this.state.isOpen });
+  };
+
+  goToURL = (url) => {
+    this.props.history.push(url);
   };
 
   render() {
@@ -174,8 +167,12 @@ class Header extends Component {
           </li>
           <MDBSideNavNav>
             <MDBSideNavCat name="Funnels" id="funnel-cat" icon="funnel-dollar">
-              <MDBSideNavItem>Dashboard</MDBSideNavItem>
-              <MDBSideNavItem to="/create-funnel">Create funnel</MDBSideNavItem>
+              <MDBSideNavItem onClick={() => this.goToURL("/")}>
+                Dashboard
+              </MDBSideNavItem>
+              <MDBSideNavItem onClick={() => this.goToURL("/create-funnel")}>
+                Create funnel
+              </MDBSideNavItem>
             </MDBSideNavCat>
             <MDBSideNavCat name="Tools" id="tools-cat" icon="tools">
               <MDBSideNavItem>Analytics</MDBSideNavItem>
@@ -226,4 +223,4 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { logout })(Header);
+export default withRouter(connect(mapStateToProps, { logout })(Header));

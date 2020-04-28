@@ -14,4 +14,15 @@ Make a dashboard:
 	most visited funnels
 	other analytic data
 
-this.props.deleteFunnel.bind(this, funnel.id)
+
+    optin_h1: this.props.funnel.optinpage.h1,
+    optin_h2: this.props.funnel.optinpage.h2,
+    optin_p: this.props.funnel.optinpage.p,
+    optin_btn: this.props.funnel.optinpage.btn,
+    landing_h1: this.props.funnel.landingpage.h1,
+    landing_h2: this.props.funnel.landingpage.h2,
+    landing_p: this.props.funnel.landingpage.p,
+
+<h1>{funnel.landingpage.h1}</h1>
+              <h2>{funnel.landingpage.h2}</h2>
+              <p>{funnel.landingpage.p}</p>

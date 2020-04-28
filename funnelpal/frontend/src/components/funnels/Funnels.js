@@ -36,11 +36,6 @@ export class Funnels extends Component {
   render() {
     const columns = [
       {
-        label: "ID",
-        field: "id",
-        sort: "asc",
-      },
-      {
         label: "Funnel name",
         field: "name",
         sort: "asc",
@@ -52,7 +47,7 @@ export class Funnels extends Component {
       },
       {
         label: "Landing page",
-        field: "landing page;",
+        field: "landing page",
         sort: "asc",
       },
     ];
@@ -72,7 +67,6 @@ export class Funnels extends Component {
                 style={rowStyle}
                 onClick={() => this.goToFunnel(funnel.id)}
               >
-                <td>{funnel.id}</td>
                 <td>{funnel.name}</td>
                 <td>{funnel.optinpage.h1}</td>
                 <td>{funnel.landingpage.h1}</td>
