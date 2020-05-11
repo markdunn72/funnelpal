@@ -2,7 +2,13 @@ import axios from "axios";
 import { createMessage, returnErrors } from "./messages";
 import { tokenConfig } from "./auth";
 
-import { GET_FUNNELS, GET_FUNNEL, DELETE_FUNNEL, CREATE_FUNNEL } from "./types";
+import {
+  GET_FUNNELS,
+  GET_FUNNEL,
+  DELETE_FUNNEL,
+  CREATE_FUNNEL,
+  UPDATE_FUNNEL,
+} from "./types";
 
 export const getFunnels = () => (dispatch, getState) => {
   axios
@@ -60,13 +66,14 @@ export const createFunnel = (funnel) => (dispatch, getState) => {
     );
 };
 
+// TODO: make this partial update
 export const updateFunnel = (funnel, id) => (dispatch, getState) => {
   axios
-    .post(`/api/funnels/${id}/`, funnel, tokenConfig(getState))
+    .patch(`/api/funnels/${id}/`, funnel, tokenConfig(getState))
     .then((res) => {
-      dispatch(createMessage({ createFunnel: "Funnel Created" }));
+      dispatch(createMessage({ updateFunnel: "Funnel Updated" }));
       dispatch({
-        type: CREATE_FUNNEL,
+        type: UPDATE_FUNNEL,
         payload: res.data,
       });
     })

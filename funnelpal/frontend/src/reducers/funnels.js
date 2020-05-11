@@ -3,6 +3,7 @@ import {
   GET_FUNNEL,
   DELETE_FUNNEL,
   CREATE_FUNNEL,
+  UPDATE_FUNNEL,
 } from "../actions/types.js";
 
 const initialState = {
@@ -28,6 +29,7 @@ export default function (state = initialState, action) {
         funnels: state.funnels.filter((funnel) => funnel.id != action.payload),
       };
     case CREATE_FUNNEL:
+    case UPDATE_FUNNEL:
       return {
         ...state,
         funnels: [...state.funnels, action.payload],

@@ -2,6 +2,7 @@ export const GET_FUNNELS = "GET_FUNNELS";
 export const GET_FUNNEL = "GET_FUNNEL";
 export const DELETE_FUNNEL = "DELETE_FUNNEL";
 export const CREATE_FUNNEL = "CREATE_FUNNEL";
+export const UPDATE_FUNNEL = "UPDATE_FUNNEL";
 export const GET_ERRORS = "GET_ERRORS";
 export const CREATE_MESSAGE = "CREATE_MESSAGE";
 export const USER_LOADING = "USER_LOADING";

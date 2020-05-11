@@ -6,6 +6,7 @@ const Editable = ({
   placeholder,
   children,
   childRef,
+  onBlur,
   ...props
 }) => {
   const [isEditing, setEditing] = useState(false);
@@ -29,13 +30,15 @@ const Editable = ({
     }
   };
 
+  const handleBlur = () => {
+    setEditing(false);
+    onBlur();
+  };
+
   return (
     <section {...props}>
       {isEditing ? (
-        <div
-          onBlur={() => setEditing(false)}
-          onKeyDown={(e) => handleKeyDown(e, type)}
-        >
+        <div onBlur={handleBlur} onKeyDown={(e) => handleKeyDown(e, type)}>
           {children}
         </div>
       ) : (
@@ -43,9 +46,7 @@ const Editable = ({
           className={`rounded py-2 px-3 text-gray-700 leading-tight whitespace-pre-wrap hover:shadow-outline editable-${type}`}
           onClick={() => setEditing(true)}
         >
-          <span className={`${text ? "text-black" : "text-gray-500"}`}>
-            {text || placeholder || "Editable content"}
-          </span>
+          <span className={`${text ? "text-white" : ""}`}>{text || ""}</span>
         </div>
       )}
     </section>
